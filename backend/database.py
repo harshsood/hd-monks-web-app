@@ -15,8 +15,7 @@ class Database:
     async def connect(self):
         """Initialize database connection"""
         try:
-            mongo_url = os.environ.get('MONGO_URL', 'mongodb+srv://hdmonks_admin:hdmonks123@cluster0.quq6eah.mongodb.net/hdmonks?retryWrites=true&w=majority
-')
+            mongo_url = os.environ.get('MONGO_URL', 'mongodb+srv://hdmonks_admin:hdmonks123@cluster0.quq6eah.mongodb.net/hdmonks?retryWrites=true&w=majority')
             db_name = os.environ.get('DB_NAME', 'hdmonks')
             
             self.client = AsyncIOMotorClient(mongo_url)
