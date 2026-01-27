@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {
@@ -62,7 +62,7 @@ const ServiceDetail = () => {
   const [service, setService] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchService = async () => {
+  const fetchService = useCallback(async () => {
     try {
       setLoading(true);
       const response = await axios.get(`${API}/services/${serviceId}`);
@@ -76,11 +76,11 @@ const ServiceDetail = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [serviceId, navigate]);
 
   useEffect(() => {
     fetchService();
-  }, [serviceId]);
+  }, [fetchService]);
 
   if (loading) {
     return (
