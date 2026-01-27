@@ -202,7 +202,7 @@ async def seed_stages_and_services():
                     "name": "Litigation Support",
                     "description": "Recovery suits, civil/criminal matters, and IPR litigation",
                     "icon": "Gavel",
-                    "relevant_for": ["msme"],
+                    "relevant_for": ["startup", "msme"],
                     "details": "Comprehensive litigation support including debt recovery, civil and criminal case representation, IPR infringement cases, and dispute resolution through arbitration or mediation.",
                     "created_at": datetime.utcnow(),
                     "updated_at": datetime.utcnow()
@@ -213,7 +213,7 @@ async def seed_stages_and_services():
                     "name": "Advanced Taxation",
                     "description": "E-commerce taxation and tax audit readiness",
                     "icon": "BarChart",
-                    "relevant_for": ["msme"],
+                    "relevant_for": ["startup", "msme"],
                     "details": "Advanced tax services including e-commerce taxation, transfer pricing, international taxation, tax audit preparation, and strategic tax optimization for growing businesses.",
                     "created_at": datetime.utcnow(),
                     "updated_at": datetime.utcnow()
@@ -224,7 +224,7 @@ async def seed_stages_and_services():
                     "name": "Operational Audits",
                     "description": "Legal and HR audits to ensure regulatory compliance",
                     "icon": "Search",
-                    "relevant_for": ["msme"],
+                    "relevant_for": ["startup", "msme"],
                     "details": "Periodic audit services covering legal compliance review, HR policy audits, financial system audits, and comprehensive risk assessment to identify and address regulatory gaps.",
                     "created_at": datetime.utcnow(),
                     "updated_at": datetime.utcnow()
@@ -245,7 +245,7 @@ async def seed_stages_and_services():
                     "name": "Funding & Mentoring",
                     "description": "Pitch deck preparation and VC/Angel due diligence",
                     "icon": "DollarSign",
-                    "relevant_for": ["msme"],
+                    "relevant_for": ["startup", "msme"],
                     "details": "Fundraising support including investor pitch deck creation, financial modeling, due diligence preparation, investor introductions, and term sheet negotiation assistance.",
                     "created_at": datetime.utcnow(),
                     "updated_at": datetime.utcnow()
@@ -256,7 +256,7 @@ async def seed_stages_and_services():
                     "name": "Strategy Advisory",
                     "description": "Long-term business scaling and pivot strategies",
                     "icon": "Target",
-                    "relevant_for": ["msme"],
+                    "relevant_for": ["startup", "msme"],
                     "details": "Strategic consulting for business expansion, market entry strategies, product-market fit optimization, operational scaling, and strategic pivot planning for sustainable growth.",
                     "created_at": datetime.utcnow(),
                     "updated_at": datetime.utcnow()
@@ -267,7 +267,7 @@ async def seed_stages_and_services():
                     "name": "IPO Readiness",
                     "description": "Public listing preparation and corporate governance",
                     "icon": "LineChart",
-                    "relevant_for": ["msme"],
+                    "relevant_for": ["startup", "msme"],
                     "details": "Complete IPO preparation including corporate governance structuring, financial audit readiness, regulatory compliance for public markets, and listing process management.",
                     "created_at": datetime.utcnow(),
                     "updated_at": datetime.utcnow()

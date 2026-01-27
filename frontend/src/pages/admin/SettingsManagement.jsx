@@ -3,18 +3,29 @@ import axios from 'axios';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { toast } from 'sonner';
-import { Save } from 'lucide-react';
+import { Save, Upload } from 'lucide-react';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api/admin`;
 
 const SettingsManagement = () => {
   const [settings, setSettings] = useState({
-    company_name: '', company_email: '', company_phone: '', company_address: '',
-    smtp_host: '', smtp_port: 587, smtp_user: '', smtp_password: '', recipient_email: '',
+    company_name: 'HD MONKS',
+    company_email: '',
+    company_phone: '',
+    company_address: '',
+    site_title: 'HD MONKS - Business Solutions',
+    site_description: 'End-to-end business solutions from startup to IPO',
+    company_logo_url: 'https://customer-assets.emergentagent.com/job_bizlaunch-guide-1/artifacts/7w27dsce_HD%20Monks%20%282%29.png',
+    favicon_url: '',
+    smtp_host: '',
+    smtp_port: 587,
+    smtp_user: '',
+    smtp_password: '',
+    recipient_email: '',
     social_links: { linkedin: '', twitter: '', facebook: '' }
   });
-  const [activeTab, setActiveTab] = useState('company');
+  const [activeTab, setActiveTab] = useState('branding');
 
   useEffect(() => {
     fetchSettings();
@@ -53,19 +64,71 @@ const SettingsManagement = () => {
         </Button>
       </div>
 
-      <div className="flex gap-2 border-b">
-        {['company', 'smtp', 'social'].map(tab => (
+      <div className="flex gap-2 border-b overflow-x-auto">
+        {['branding', 'company', 'smtp', 'social'].map(tab => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`px-4 py-2 font-medium ${activeTab === tab ? 'border-b-2 border-orange-500 text-orange-600' : 'text-gray-600'}`}
+            className={`px-4 py-2 font-medium whitespace-nowrap ${activeTab === tab ? 'border-b-2 border-orange-500 text-orange-600' : 'text-gray-600'}`}
           >
-            {tab.charAt(0).toUpperCase() + tab.slice(1)}
+            {tab === 'branding' ? 'Branding & Site' : tab.charAt(0).toUpperCase() + tab.slice(1)}
           </button>
         ))}
       </div>
 
       <Card className="p-6">
+        {activeTab === 'branding' && (
+          <div className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium mb-2">Site Title</label>
+              <input
+                type="text"
+                value={settings.site_title}
+                onChange={e => setSettings({...settings, site_title: e.target.value})}
+                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 outline-none"
+                placeholder="HD MONKS - Business Solutions"
+              />
+              <p className="text-xs text-gray-500 mt-1">This appears in browser tabs and search results</p>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">Site Description</label>
+              <textarea
+                value={settings.site_description}
+                onChange={e => setSettings({...settings, site_description: e.target.value})}
+                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 outline-none"
+                rows="3"
+                placeholder="End-to-end business solutions from startup to IPO"
+              />
+              <p className="text-xs text-gray-500 mt-1">This appears in search engine results</p>
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">Company Logo URL</label>
+              <input
+                type="url"
+                value={settings.company_logo_url}
+                onChange={e => setSettings({...settings, company_logo_url: e.target.value})}
+                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 outline-none"
+                placeholder="https://example.com/logo.png"
+              />
+              {settings.company_logo_url && (
+                <div className="mt-2 p-2 bg-gray-100 rounded">
+                  <img src={settings.company_logo_url} alt="Logo preview" className="h-12 object-contain" />
+                </div>
+              )}
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">Favicon URL</label>
+              <input
+                type="url"
+                value={settings.favicon_url}
+                onChange={e => setSettings({...settings, favicon_url: e.target.value})}
+                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 outline-none"
+                placeholder="https://example.com/favicon.ico"
+              />
+              <p className="text-xs text-gray-500 mt-1">Browser tab icon (16x16 or 32x32 pixels)</p>
+            </div>
+          </div>
+        )}
         {activeTab === 'company' && (
           <div className="space-y-4">
             <div>

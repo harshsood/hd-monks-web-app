@@ -3,6 +3,7 @@ import "@/App.css";
 import Home from "./pages/Home";
 import ServiceDetail from "./pages/ServiceDetail";
 import { AdminAuthProvider } from "./contexts/AdminAuthContext";
+import { SettingsProvider } from "./contexts/SettingsContext";
 import ProtectedAdminRoute from "./components/ProtectedAdminRoute";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./pages/admin/AdminLayout";
@@ -22,9 +23,10 @@ import AnalyticsManagement from "./pages/admin/AnalyticsManagement";
 
 function App() {
   return (
-    <AdminAuthProvider>
-      <div className="App">
-        <BrowserRouter>
+    <SettingsProvider>
+      <AdminAuthProvider>
+        <div className="App">
+          <BrowserRouter>
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<Home />} />
@@ -58,7 +60,5 @@ function App() {
         </BrowserRouter>
       </div>
     </AdminAuthProvider>
-  );
-}
-
+    </SettingsProvider>
 export default App;

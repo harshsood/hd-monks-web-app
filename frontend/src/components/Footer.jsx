@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react';
+import { useSettings } from '../contexts/SettingsContext';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { settings } = useSettings();
 
   return (
     <footer className="bg-gray-900 text-gray-300">
@@ -11,12 +13,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div>
             <img
-              src="https://customer-assets.emergentagent.com/job_bizlaunch-guide-1/artifacts/7w27dsce_HD%20Monks%20%282%29.png"
-              alt="HD MONKS"
+              src={settings.company_logo_url}
+              alt={settings.company_name}
               className="h-12 w-auto mb-4 brightness-0 invert"
             />
             <p className="text-sm text-gray-400 mb-4">
-              Your trusted partner for end-to-end business solutions from startup to IPO.
+              {settings.company_name} - {settings.site_description}
             </p>
             <div className="flex space-x-4">
               <a href="#" className="hover:text-orange-500 transition-colors">
@@ -68,15 +70,15 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start space-x-3 text-sm">
                 <Mail className="h-5 w-5 text-orange-500 flex-shrink-0 mt-0.5" />
-                <span>contact@hdmonks.com</span>
+                <span>{settings.company_email || 'contact@hdmonks.com'}</span>
               </li>
               <li className="flex items-start space-x-3 text-sm">
                 <Phone className="h-5 w-5 text-orange-500 flex-shrink-0 mt-0.5" />
-                <span>+91 XXX XXX XXXX</span>
+                <span>{settings.company_phone || '+91 XXX XXX XXXX'}</span>
               </li>
               <li className="flex items-start space-x-3 text-sm">
                 <MapPin className="h-5 w-5 text-orange-500 flex-shrink-0 mt-0.5" />
-                <span>Your Business Address</span>
+                <span>{settings.company_address || 'Your Business Address'}</span>
               </li>
             </ul>
           </div>
@@ -85,7 +87,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sm text-gray-400">
-              © {currentYear} HD MONKS Private Limited. All rights reserved.
+              © {currentYear} {settings.company_name} Private Limited. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm">
               <a href="#" className="hover:text-orange-500 transition-colors">

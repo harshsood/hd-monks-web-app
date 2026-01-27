@@ -117,6 +117,28 @@ async def get_available_timeslots(date: Optional[str] = Query(None)):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@api_router.get("/settings")
+async def get_settings():
+    """Get site settings"""
+    try:
+        settings = await database.get_settings()
+        return {"success": True, "data": settings}
+    except Exception as e:
+        logger.error(f"Error fetching settings: {str(e)}")
+        # Return default settings if not found
+        return {
+            "success": True,
+            "data": {
+                "company_name": "HD MONKS",
+                "site_title": "HD MONKS - Business Solutions",
+                "site_description": "End-to-end business solutions from startup to IPO",
+                "company_logo_url": "https://customer-assets.emergentagent.com/job_bizlaunch-guide-1/artifacts/7w27dsce_HD%20Monks%20%282%29.png",
+                "company_email": "contact@hdmonks.com",
+                "company_phone": "+91 XXX XXX XXXX"
+            }
+        }
+
+
 @api_router.post("/booking")
 async def book_consultation(booking: ConsultationBookingCreate):
     """Book a consultation"""
