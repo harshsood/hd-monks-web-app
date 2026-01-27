@@ -36,23 +36,33 @@ export const SettingsProvider = ({ children }) => {
     try {
       const response = await axios.get(`${API}/settings`);
       if (response.data.success && response.data.data) {
-        setSettings(prev => ({...prev, ...response.data.data}));
-        // Update page title and description
-        document.title = response.data.data.site_title || 'HD MONKS';
-        document.querySelector('meta[name="description"]')?.setAttribute(
-          'content',
-          response.data.data.site_description || 'Business Solutions'
-        );
+        const settingsData = response.data.data;
+        setSettings(prev => ({...prev, ...settingsData}));
+        
+        // Update page title
+        if (settingsData.site_title) {
+          document.title = settingsData.site_title;
+        }
+        
+        // Update meta description
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc && settingsData.site_description) {
+          metaDesc.setAttribute('content', settingsData.site_description);
+        }
+        
         // Update favicon
-        if (response.data.data.favicon_url) {
-          const link = document.querySelector('link[rel="icon"]') || document.createElement('link');
-          link.rel = 'icon';
-          link.href = response.data.data.favicon_url;
-          document.head.appendChild(link);
+        if (settingsData.favicon_url) {
+          let link = document.querySelector('link[rel="icon"]');
+          if (!link) {
+            link = document.createElement('link');
+            link.rel = 'icon';
+            document.head.appendChild(link);
+          }
+          link.href = settingsData.favicon_url;
         }
       }
     } catch (error) {
-      console.log('Settings not available yet');
+      console.log('Settings not available, using defaults');
     } finally {
       setLoading(false);
     }
