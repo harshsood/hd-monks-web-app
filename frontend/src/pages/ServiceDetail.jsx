@@ -62,10 +62,6 @@ const ServiceDetail = () => {
   const [service, setService] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchService();
-  }, [serviceId]);
-
   const fetchService = async () => {
     try {
       setLoading(true);
@@ -81,6 +77,10 @@ const ServiceDetail = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchService();
+  }, [serviceId]);
 
   if (loading) {
     return (

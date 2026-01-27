@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -19,15 +19,7 @@ export const AdminAuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('admin_token'));
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (token) {
-      verifyToken();
-    } else {
-      setLoading(false);
-    }
-  }, []);
-
-  const verifyToken = async () => {
+  const verifyToken = useCallback(async () => {
     try {
       const response = await axios.get(`${API}/verify`, {
         headers: { Authorization: `Bearer ${token}` }
@@ -43,7 +35,15 @@ export const AdminAuthProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [token]);
+
+  useEffect(() => {
+    if (token) {
+      verifyToken();
+    } else {
+      setLoading(false);
+    }
+  }, [token, verifyToken]);
 
   const login = async (username, password) => {
     try {
