@@ -1,0 +1,13 @@
+{
+  "name": "hd-monks-web-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "install": "cd frontend && npm install --legacy-peer-deps",
+    "build": "cd frontend && npm run build",
+    "start": "cd frontend && npm start",
+    "dev": "cd frontend && npm start"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
