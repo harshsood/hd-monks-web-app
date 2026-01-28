@@ -58,7 +58,10 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
-      </div>
-    </AdminAuthProvider>
+        </div>
+      </AdminAuthProvider>
     </SettingsProvider>
+  );
+}
+
 export default App;
