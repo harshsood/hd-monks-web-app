@@ -2,9 +2,6 @@
   "version": 2,
   "buildCommand": "npm --prefix frontend install --legacy-peer-deps && npm --prefix frontend run build",
   "outputDirectory": "frontend/build",
-  "env": {
-    "REACT_APP_BACKEND_URL": "@REACT_APP_BACKEND_URL"
-  },
   "headers": [
     {
       "source": "/(.*)",
@@ -27,6 +24,5 @@
         }
       ]
     }
-  ],
-  "regions": ["iad1"]
+  ]
 }
