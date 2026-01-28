@@ -3,10 +3,7 @@
   "buildCommand": "npm --prefix frontend install --legacy-peer-deps && npm --prefix frontend run build",
   "outputDirectory": "frontend/build",
   "env": {
-    "REACT_APP_BACKEND_URL": {
-      "description": "Backend API URL for the React application",
-      "default": "https://your-backend-url.com"
-    }
+    "REACT_APP_BACKEND_URL": "@REACT_APP_BACKEND_URL"
   },
   "headers": [
     {
